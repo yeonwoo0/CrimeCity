@@ -1,0 +1,165 @@
+1. 리눅스의 /opt/lampp/htdocs 경로의 하위에 staging 디렉토리를 그대로 복붙합니다.
+2. staging/utils/common.php의 mysql 패스워드를 noroot로 변경합니다.
+3. mysql의 패스워드를 noroot로 변경합니다.
+4. staging/sql.txt 의 내용을 그대로 mysql에 복붙합니다.
+5. 사용자 계정은 root:무관	ubuntu:P@ssW0rd	manager:m@n@ge3	으로 설정합니다.
+6. 외부에서 ssh와 mysql 로그인이 가능하게끔 설정해줍니다.
+7. /home/ 경로에 creds.xlsx 등의 사용자 계정 엑셀파일을 생성하고 여기에는 페이크 정보를 삽입합니다.
+8. /etc/mysql/my.cnf 파일에 		"username:root	password:noroot" 를 삽입합니다.
+9. /home/ubuntu/.bash_history 파일에 아래의 명령어를 삽입해주세요
+
+ls       
+clear                           
+cd /home                        
+sudo useradd -m manager         
+passwd                   
+ls -la                                         
+cd /home/ubuntu/Download   
+cd /home/ubuntu/Downloads                      
+cd ..                                          
+cat creds.xlsx                   
+libreoffice                        
+sudo passwd manager                                                                           
+m@n@ge3                                  
+m@n@ge3                                                                                       
+su manager                           
+sudo userdel xampp                                                                            
+cd ..                          
+ls                                                                                            
+ls -la                                         
+chmod 700 ubuntu                          
+ls -la                                                                                        
+chmod 711 ubuntu                                                                              
+chmod 755 ubuntu                               
+clear                                  
+cd /etc                                                                                       
+find . *.conf -exec grep -i -H "passw" {} + 2>/dev/null                                       
+find . *.cnf -exec grep -i -H "passw" {} + 2>/dev/null                                        
+cd ./mysql                                
+ls -la                                         
+cat my.cnf                                                                                    
+clear                                                                                         
+sudo ..                                  
+cd ..                                                                                         
+sudo nano ./ppp/peers/provider       
+su manager                                                                                    
+cd /tmp                                                                                       
+ls                     
+cat clear.py                                                                                  
+sudo nano clear.py                     
+rm -rf clear.py
+
+
+10 크론 스케줄러에 아래의 스케줄을 생성해주세요
+* *     * * *   root    /usr/bin/python3        /etc/backup/backup.py
+
+11. /etc 하위에 backup 디렉토리와 backup.py를 생성해주세요
+12. backup 디렉토리, backup.py는 모두가 읽기만 가능하도록 해주세요
+13. 아래의 코드를 backup.py에 입력해주세요
+
+import subprocess 
+import os                   
+import shutil                                 
+from datetime import datetime      
+
+def calculate_directory_size(directory):
+    total_size = 0                      
+    for dirpath, dirnames, filenames in os.walk(directory):
+        for f in filenames:                                                                   
+            fp = os.path.join(dirpath, f)                                                     
+            if os.path.exists(fp):
+                total_size += os.path.getsize(fp)
+    return total_size
+
+def backup(src, dst):
+    if not os.path.exists(src):
+        raise ValueError("Source directory does not exist")
+
+    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+    dst_backup = os.path.join(dst, f"backup_{timestamp}")
+
+    dir_size = calculate_directory_size(src)
+    print(f"Source directory size: {dir_size / (1024**2):.2f} MB")
+
+    try:
+        shutil.copytree(src, dst_backup)
+        print(f"Backup successful: {dst_backup}")
+        log_backup_result(src, dst_backup, "Success")
+    except Exception as e:
+        print(f"Backup failed: {e}")
+        log_backup_result(src, dst_backup, f"Failed: {e}")
+
+def log_backup_result(src, dst, result):
+    with open("backup_log.txt", "a") as log_file:
+        log_file.write(f"{datetime.now()} - Source: {src} - Destination: {dst} - Result: {result}\n")
+
+def run_command(command, *args):
+    try:
+        cmd = [command] + list(args)
+        result = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        return f"Error: {e.stderr}"
+
+if __name__ == "__main__":
+    source_directory = "/path/to/source"
+    destination_directory = "/path/to/destination"
+    run_command('python3', '/home/manager/clear.py')
+    backup(source_directory, destination_directory)
+
+
+14. /home/manager 경로 하위에 아래의 파일을 모두 생성해주세요
+atexit.py	clear.py	index.php	secret.txt
+
+
+
+====secret.txt 내용====
+
+Bob, did you change the password in the my.cnf file?
+If you didn't do it, you're such an idiot!
+
+
+
+====atexit.py 내용====
+
+import atexit
+
+def exit_handler():
+        print('Good Bye!')
+
+atexit.register(exit_handler)
+
+
+
+====clear.py 내용====
+
+import os
+import platform
+
+def clear_console():
+        current_os = platform.system()
+        if current_os == 'Windows':
+                os.system('cls')
+        else:
+                os.system('clear')
+
+if __name__ == "__main__":
+        clear_console()
+
+
+
+====index.php 내용====
+
+<?php
+        if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+                $uri = 'https://';
+        } else {
+                $uri = 'http://';
+        }
+        $uri .= $_SERVER['HTTP_HOST'];
+        header('Location: '.$uri.'/dashboard/');
+        exit;
+?>
+Something is wrong with the XAMPP installation :-(
+
+

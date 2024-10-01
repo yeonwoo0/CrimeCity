@@ -1,0 +1,271 @@
+CREATE database acs;
+create database credentials;
+use acs;
+
+CREATE TABLE users (
+    idx INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    hash VARCHAR(64) NOT NULL,
+    introduction TEXT,
+    profile TEXT
+);
+CREATE TABLE administrators (
+    idx INT AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    hash VARCHAR(64) NOT NULL
+);
+CREATE TABLE board (
+    idx INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    regdate DATETIME NOT NULL,
+    filename VARCHAR(255),
+    password VARCHAR(50) NOT NULL
+);
+CREATE TABLE comments (
+    idx INT(11) AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(255) NOT NULL,
+    reg DATETIME NOT NULL DEFAULT current_timestamp(),
+    boardidx INT(11),
+    comment_text TEXT
+);
+CREATE TABLE review (
+    idx INT(11) AUTO_INCREMENT PRIMARY KEY,
+    content VARCHAR(255),
+    id VARCHAR(255)
+);
+
+
+INSERT INTO USERS (id, password, hash, introduction, profile) VALUES
+('CATCHMEIFYOUCAN', 'NoBruteForce', '235955a8afc35f052639bfd849a66015764a36b305e877edc4301af2a46e33bc', NULL, NULL);
+
+INSERT INTO ADMINISTRATORS (id, password, hash) VALUES
+('CATCHMEIFYOUCAN', 'NoBruteForce', 'cb0345e93387778bde9debfddffb9869378045907342d255243be83fa4cd0845');
+
+INSERT INTO board (title, writer, content, regdate, filename, password) VALUES
+('PHP 시큐어코딩 가이드라인 파일입니다.', 'CATCHMEIFYOUCAN', '첨부파일에 올려둔 시큐어코딩 가이드라인을 참고해주세요', '2024-05-21 18:12:17', 'secure.php', 'NoBruteForce'),
+('웹 사이트 공격 의심시 IP 차단됩니다.', 'CATCHMEIFYOUCAN', '악의적인 공격활동 감지시 IP차단 조치됩니다.', '2024-05-21 18:12:17', NULL, 'NoBruteForce'),
+('안녕하세요! 의뢰 드려도 될까요?', 'KimYeongHak', '보안 컨설팅 의뢰하고 싶습니다!!', '2024-05-21 18:12:17', NULL, 'KimYeongHak');
+
+
+CREATE TABLE user_info (
+    name VARCHAR(100),
+    password VARCHAR(100),
+    ssn VARCHAR(20),
+    phone VARCHAR(20)
+);
+
+
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Vincent Long", "7u2Q#7Kk)A", "820405-1611266", "010-8882-4403");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Scott Patton", "RD35KP%vC)", "900323-1559453", "010-6710-2288");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Amy Kelley", "j7YX25Eu%Z", "900528-2284719", "010-9901-6759");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Eric Hunt", "9oeGmZz$(g", "880925-2286730", "010-2553-7975");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Henry Jacobs", "Q9$!%9Ukom", "900711-2153948", "010-4873-4786");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Misty Hall", "Q_#n3Jm5EQ", "800420-1606663", "010-7529-1541");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jacqueline Chambers", "2I(y7HVfsU", "831222-1902956", "010-5120-5687");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jacob Mueller", ")9!76G%oSq", "840131-2986541", "010-1035-6713");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jared Berry", "Lu55WZWAb(", "900725-1995735", "010-5201-4843");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kayla Clayton", "&SbDzT3nJ4", "840812-2924780", "010-2440-1417");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Matthew Montgomery", "WJ^&ueut_6", "821114-1948000", "010-4183-9878");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mark Allen", "8JId%YNa$^", "820101-2845607", "010-6407-4823");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Chad Dickerson", "(U@8VWwck^", "870525-1414860", "010-6230-1103");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Caleb Bender", "%3W&5K0TMz", "840720-1833767", "010-4228-4285");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Veronica Bailey MD", "$1OhT(s5#v", "870818-2311681", "010-2605-5299");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Brianna Carlson", "B#2RXa+fz!", "870723-1662222", "010-5371-7187");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kyle Crane", "&#86G_1ouH", "850514-1396680", "010-4274-9976");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kyle Marquez", "KdT8bfXe%y", "900515-2204061", "010-7955-1902");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kimberly Burke", "&(rXspBp7L", "840127-1159521", "010-7644-5809");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Megan Alvarez", "E1QZgeXo(p", "870926-1917572", "010-4877-2261");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sarah Bishop", "eSZrYlEm+3", "810215-1738411", "010-2355-3095");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kelsey Johns", ")9CikJW7z#", "831027-1925643", "010-3712-6172");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Derek Brooks", "#r_q7RwJk#", "881108-1260449", "010-8237-8313");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Stacey Fleming", "!m+(gD(r74", "820630-1891380", "010-2319-5866");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jose Hernandez", "%sEBAYc%22", "830919-1877964", "010-5993-4510");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Steve Miranda", "5JH4K*l0@O", "830203-2171576", "010-4763-1771");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Bryan Richardson", "NmRtUrz$%0", "901024-2273450", "010-9258-8209");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jennifer French", "!93BuM*4&!", "890416-2744723", "010-6638-8542");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Maureen Ramirez", "+kL8qObn_x", "831117-2590655", "010-8689-4324");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Maria Harding", "W$375MsPsD", "840321-1850235", "010-8465-9084");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("April Doyle", "svB^4AJw*9", "820618-1687304", "010-5812-2802");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kelly Ford", "+1S^k)87^z", "900529-1459881", "010-3519-4895");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Natalie Weaver", ")*0q3RfuaM", "850227-1998808", "010-2598-2520");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Christopher Webb", "d0PxC6^e%0", "850423-1158134", "010-6789-4624");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jacqueline Fletcher DDS", "*PWVXsQxd8", "820608-1662805", "010-5936-8904");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Cassandra Hall", "lyS8lOOr+2", "801215-2413759", "010-9439-8109");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Johnny Graves", "#0UNT7l64h", "870913-2703336", "010-7698-7507");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lindsey Campbell", "L9O6bePA#6", "840205-2575840", "010-5672-3363");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jody Goodman", "%2K1wl3RdI", "900415-2449811", "010-9017-3957");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Dana Rios", "IB&1tF^tez", "800108-2940199", "010-2988-6428");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mrs. Kelly Davis", "95Nw2cgF)8", "821017-2762995", "010-1632-5518");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Priscilla Edwards", "r$97MmbPXT", "831007-2628740", "010-3865-4057");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Douglas Pham", "k*118BXwPH", "870322-2658422", "010-1286-7348");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Thomas Wood", "j8zyRu_p$L", "800207-2446774", "010-3201-5720");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Susan Schwartz", ")@nhBTjx8G", "830216-2186803", "010-7392-4411");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Gregory Alvarez", "^m^TBkTq9V", "800821-2647554", "010-5095-4626");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Audrey King", "YqrCMjeK_2", "840426-2174248", "010-4811-7709");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Michael Vega", "U%^4SNjtAU", "810231-2634715", "010-3097-5524");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Rebecca Shields", "*FP5AHXbJM", "841103-2777356", "010-7368-3462");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Amy Williams", "^o6Im(qptd", "880225-1340897", "010-7953-9918");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Angela Black", "o(rFmgDbP2", "841219-1770732", "010-8755-6679");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Rose Oneill", "+J62MXdw+^", "850830-2771209", "010-4884-2575");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Shane Adams", "5KwPSV@s$6", "840126-1558797", "010-4135-5014");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Karen King", "(3363C9dz^", "901102-2602115", "010-2318-9257");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("John Williams", ")ptOM@Aa1B", "841220-1987798", "010-2837-9975");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Luis Macdonald", "OgO&3Qg8l1", "851010-1604975", "010-5923-1636");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Megan Byrd", "w@Z70BUvrj", "851128-1950955", "010-3429-7244");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Gordon Bates", "%0JYoJp(@3", "860410-1562759", "010-4965-2944");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Bianca Adams", "x)%1ByGf*9", "830214-1813123", "010-9593-6045");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Brian Smith", "uv)14TWs^@", "851112-2266002", "010-4821-2250");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Cody Jensen", "0BPEp9l!&6", "900524-2435765", "010-4723-7477");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jordan Zamora", "4Jkq0Gpld)", "880801-2309660", "010-6729-3839");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Justin Olsen", "fBY637kt&0", "810920-2492852", "010-6019-5990");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Rachel Sherman", "MArtVzpM&5", "850514-1784007", "010-1888-2931");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("John Horton", "%5WUNvD72v", "831123-1664003", "010-7592-7779");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Glenda Thomas", "ETK!4BbzW%", "840316-1345166", "010-4483-5286");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Paula Sims", "(9P9#gxs13", "881025-2233193", "010-6723-9241");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Richard Wilkins", "j5mxmV7b(w", "870717-1756758", "010-3510-4263");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Eric Henry", "#TY5qRes%5", "890519-1216553", "010-9728-3358");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Dawn Gallagher", "41NXjew8*I", "861213-1685074", "010-6166-2270");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sara Salinas", "!4nKs05dN6", "840831-1729615", "010-6063-4538");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Matthew Johnson MD", "Kg@_3WmFYq", "890430-2533647", "010-2039-2549");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sergio Jones", "+IxpYWZpk9", "841110-1851866", "010-9287-9134");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Ricardo Mcdonald", "a+)q9Vdo#U", "830105-1642182", "010-3410-3932");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Leah Nguyen", "xjfGKgZU^3", "870910-2301779", "010-8127-1760");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("April Campbell", "wfoJBpEb$5", "880215-2327136", "010-3313-7455");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Courtney Roberts", "TsJU6RxvA@", "821218-1343465", "010-4557-2564");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jillian Thompson", "aV(8Th6CbW", "900426-1197342", "010-8807-6413");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Daniel Padilla", "82efKLjk*a", "900927-2286679", "010-8486-5806");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Gregory Shelton", "@2JH2Y2iqL", "901129-2236389", "010-2943-3049");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Alex Sweeney", "Y$4UN*m1TI", "890725-2725212", "010-8140-4345");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mark Dodson", "E0+Z^um+$d", "850406-1757843", "010-7780-6944");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Patrick Schwartz", "&I_CABYzi2", "891122-2699659", "010-3660-6377");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Melinda Branch", "PA2HUyuu%#", "880225-1940141", "010-3354-6879");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mark Middleton", ")WDT*EnPX0", "900621-2686610", "010-6397-2124");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Diana Hayes", "RU5AnRsDk$", "860631-2431949", "010-1199-4543");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Elizabeth Anderson", "WGTiKIbg*8", "860201-1711138", "010-9985-4702");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Timothy Moss", "+OY9XR%rk2", "850603-2285227", "010-8991-4486");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Elizabeth Sanchez", "87LH!r%l!x", "801021-2790637", "010-8561-7507");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Gabrielle Barnes", "caN+n6Tg7!", "830227-1404829", "010-1883-6842");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Robert Brown", "!Vd998BoNt", "820713-1838571", "010-4493-6866");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Samantha James", "3NJh+Glu^!", "821117-2951925", "010-3325-2947");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Victoria Mitchell", "f4kGBUrd@X", "800309-1429866", "010-1112-9412");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Scott Mitchell", "+5vhH(wINy", "830416-2974210", "010-4110-2343");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mrs. Cindy Moyer", "E*%8+ESaxV", "810915-1448186", "010-9171-7916");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Stacey Brown", "ld&7a6FyZN", "810726-2515316", "010-8871-2989");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Victor Carter", "z1(LRr$r!X", "870503-1974658", "010-6687-5266");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Angela Jennings", "S&+0Udg6UA", "881212-2865682", "010-2198-1436");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("William Sullivan", "+CmC&dZEI1", "890601-2204764", "010-2255-2814");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Timothy Freeman", "q04FzPd_)J", "830226-2760839", "010-5102-4293");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Joseph Fuentes", "*A1BA3Wx*3", "900431-1746930", "010-7910-3379");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lauren Powell", "(0rWGsH1+q", "800514-2423468", "010-3962-2165");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Margaret Petersen", "2CcW3XWs3@", "841013-2954479", "010-7392-1606");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Tonya Martin", "O$6H5(mH+T", "870110-1606282", "010-3073-8485");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Steven Alvarez", "a5&l9Z^wd(", "830920-2391337", "010-7794-6565");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Andrew Hickman", "v^3m8)lcUX", "900203-2519876", "010-7384-9277");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kelsey Ferrell", "VUS1v4ljG@", "810115-2600927", "010-4753-6537");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Nancy Thomas", "TVGSe#hd!1", "881004-2189750", "010-3520-9929");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Christina Ramsey", "H75l0RRk$D", "830505-2297800", "010-4259-7615");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Amy Ruiz", "z8PlLv_v&y", "881031-2150093", "010-5853-7278");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jennifer Rodriguez", "1+3W6$RzC&", "810909-2343542", "010-1236-5667");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Casey Rocha", ")o6RL4mfOP", "810806-2414304", "010-6456-8667");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Derek Williams", "%dEplmWq6B", "870303-1349024", "010-6332-6127");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Richard Bailey", "_9Uz$Z$jn$", "900228-1278058", "010-4143-1292");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Erin Jacobs", "!Ub4O6r7HN", "901125-1848227", "010-4239-9864");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Vanessa Bennett", "6n^A3*KmHm", "870727-2768969", "010-8897-6440");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Benjamin Foster", "s+w5SWljRf", "860310-2903594", "010-4537-1013");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Christopher Williams", "VDo6EYh_l+", "851107-2159856", "010-9382-3206");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("John Crane", "WJ%xHIe(+7", "830521-1329584", "010-4134-3914");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Rodney Stone", "0W0YAts5$%", "870210-1241982", "010-2752-8293");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kevin Meyers", "P^9BN7Oq$v", "800924-2179331", "010-1735-4121");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Christopher Dickerson", "fMWg77Rq&U", "801226-2995041", "010-1810-6792");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("George Knight", "36ZrzouN@c", "850427-2491823", "010-7004-7490");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Bryan Blackwell", "%hn9@DNQ@5", "800528-1901966", "010-7229-9309");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Amanda Palmer", "e%5sMBrGNb", "801223-1326037", "010-2232-4894");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lisa Fisher", "%46s$mb#Wa", "800816-2970802", "010-5275-1707");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Ronald Russell", "%imFP5Tf*7", "891107-2714315", "010-4810-7287");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Rebecca Juarez", "^3$MV2VsXo", "831107-1218982", "010-5435-7338");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Todd Moreno", "S#!1JAMy3h", "860231-2983170", "010-6715-1798");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jacob Ward", "1$+88hYtwy", "850125-2326787", "010-4337-7720");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Tina Gomez", "fp&1TPNea(", "810324-2284318", "010-9336-6846");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lisa Price", "(l3jHjRr38", "890527-1233745", "010-8346-9406");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("David Jones", "9y%0MaCSLw", "860622-1359434", "010-7743-2972");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Amanda Gordon", "&2KWHU$b&u", "830527-2340518", "010-7716-3097");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Patrick Thompson", "CZ3YFCud^%", "880624-2413693", "010-5664-8145");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Mary Hernandez", "IV_eF6s3e)", "870130-1521342", "010-7169-8720");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Ryan Salinas", ")NB)MJxag6", "820231-2234303", "010-4302-3667");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Laura Medina", "&8Kqzq8y+j", "820505-2546195", "010-6075-4193");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Joanne Thompson", "odV$AoUw_1", "861026-1393754", "010-1743-6223");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lee Manning", "%VUvIfP$w4", "901205-2569753", "010-5278-5971");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Nicholas Hoover", "3cIL)jq^*&", "800815-1220952", "010-8026-5209");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Robyn Santos", "a4gFIYHs@n", "820611-1531036", "010-2640-5739");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sara Bradford", "7$_9K9YuDw", "840711-2223239", "010-7091-7571");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Eric Hall", "#Z4HXB9sj8", "851015-2284562", "010-8817-8188");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Andrew Neal", "ra4&Jcry#G", "890322-1273172", "010-6549-3553");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lori Thompson", "@wj1HYht##", "850111-1926320", "010-5634-2318");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Anita Irwin", "W8q)p2Foo*", "900203-2791509", "010-5255-5874");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Joseph Price", "W**&1fSm)(", "841130-2502598", "010-2113-9023");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kristen Higgins", "9+(Rd5eV&S", "881207-1913253", "010-1724-1215");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kaitlyn Castillo", "sAk9KkFk3@", "810619-2401394", "010-5485-5045");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Vincent Vance", "omPo08Ar#1", "801231-2210101", "010-7865-8934");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Joel Wilson", "^$L&Q1Fh2K", "800109-2625676", "010-6301-7438");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Laura Gilbert", ")Bq6MYc^tG", "801225-1674738", "010-4940-9431");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jonathan Burns", "hs^R0ISvdO", "800514-2829749", "010-2520-6538");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Steven Marshall", "#14J9Yc!wq", "870324-1201316", "010-5749-1848");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lori Jones", "H8TIjE#F)4", "810117-2541964", "010-2560-5576");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Scott Richard", "V*6oKrggFO", "861030-1929099", "010-5542-4406");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Glenn Diaz", "#D(5eSwitB", "860915-2524562", "010-8652-6265");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jonathan Lane", "M%1_gSmgoY", "890818-1751116", "010-5878-5469");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Omar Dickerson", "%46GB0ti9B", "890227-2767611", "010-8694-8579");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sara Marshall", "w^9Ub^7kZj", "850822-1248967", "010-5727-8765");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Veronica Johnson", "X31BFIpF1^", "860614-1236164", "010-5683-9563");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Brett Boone", "jL9KEpxSR%", "860820-1328391", "010-2142-7171");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sandra Hubbard", "Q25umK2jC&", "880402-1238271", "010-6110-4237");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Sylvia Levine", "a3dqAjEpy@", "830723-1873145", "010-3152-8136");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jeffrey Bradley", "JT(u9HgHTn", "840730-2281317", "010-5753-8881");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kayla Wilson", "@7Lg4#kl*s", "851103-1543287", "010-1201-5325");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Maureen Williams", "2Q+3VtQic%", "901121-2257503", "010-4493-9515");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Brian Parrish", "C*27VN6r^l", "890513-2844527", "010-8190-3512");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Emily Patel", "jiyWILR0&5", "850308-1971399", "010-4812-8912");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Tiffany Montgomery", "3eFZNIl6)u", "901105-1925475", "010-2278-2990");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Ana Vasquez", "(+B7TNvi0J", "821102-2334961", "010-2357-5332");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Danielle Bishop", "%0WBZLKrn^", "821117-2655078", "010-4983-5148");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Tammy Cantu", "$HE#%RuKu0", "830603-1854165", "010-1328-7724");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Dennis Spencer", "5DE&4Iau$T", "831010-2804464", "010-9643-7459");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Dana Moore", "qlX2XwSP&9", "850724-2185013", "010-2711-9018");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Melissa Hall", "O+u8$^WtO6", "800319-1321663", "010-5804-1793");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Valerie Maxwell", "$7HrV8pEEZ", "841206-1904652", "010-8902-3820");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Nancy Beard", "H)&^pGuZ@6", "900423-2661730", "010-7826-8213");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Nicholas Parks", "(8QW*JCBj@", "870904-2246810", "010-7913-3017");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Elizabeth Perez", "b!8sLFPyl&", "870627-2953147", "010-8301-5697");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jennifer Washington", "+5Nsw1reAE", "890703-2393971", "010-1723-3077");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Michelle Larson", "#0lCpzosMp", "800912-1484150", "010-4266-7695");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Shelby White", "BRmP*7Yr^E", "810812-2538295", "010-6246-5005");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Cathy Prince", "(7ORm+cW#s", "871219-1743603", "010-7000-6248");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Brent Alvarez", "@f9NEOuhZ0", "890401-1990956", "010-3479-6103");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Juan Cooper", "+H2uJ)7tal", "891113-1578546", "010-7994-6466");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Kari Page", "7EbSFy$o+j", "850730-2531186", "010-4891-4126");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Leonard Figueroa", "*yYcpyUc4i", "880221-2514679", "010-7367-8845");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Lynn Foster", "l(1X(l$U+5", "840905-2635958", "010-1033-6547");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Austin Petersen", "Q6LmSdsp*F", "901025-2472082", "010-9837-2787");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Debra Williams", "ax_BpGhe$6", "840424-1743192", "010-4300-4005");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Catherine Lee", "e(Hvtoq+%5", "880322-2492530", "010-1520-8131");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Justin Gomez", "!9WvuHmJwx", "900222-2260228", "010-3173-1520");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Melvin Flynn", "VS(34Ilkke", "900107-1620646", "010-7998-4565");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jaclyn Hobbs", "#gt8RWhz&S", "890223-1373460", "010-3463-3428");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Melissa Hardin", "0(&^6GGsgF", "881117-2758196", "010-4243-7278");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Jill Arnold", "#nGcXvxx57", "850327-2659191", "010-2850-2906");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Deanna Harvey", "+bBm%H)l1K", "840130-2528252", "010-1024-7566");
+INSERT INTO user_info(name, password, ssn, phone) VALUES("Robert Hernandez", "^A0Ew)u*%I", "801227-2337940", "010-9721-1086");
+
+use credentials;
+create table user_credentials(
+	idx	int(11),
+	username	varchar(255),
+	password	varchar(255)
+);
+insert into user_credentials(username, password) values('root', 'qwerty123456');
+insert into user_credentials(username, password) values('manager', 'Genesis');
+insert into user_credentials(username, password) values('ubuntu', 'P@ssW0rd');
